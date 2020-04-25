@@ -1,20 +1,50 @@
-import React from 'react'
-import {View,Text,TouchableOpacity,StyleSheet} from 'react-native'
+import React, { useState } from 'react'
+import {View,Text,TouchableOpacity,StyleSheet,Button, SafeAreaView} from 'react-native'
+import Modal from 'react-native-modal';
+import {NeuBorderView,NeuView} from 'react-native-neu-element'
+import gray from './Color'
 
 const BackgroundList =({countryRegion,confirmed,deaths,recovered,item})=>{
   // console.log(countyData,'res')
-    
+    const [isModalVisible,setModal]=useState(false)
  return (
       <View style={styles.container}>
         <View style={styles.cardParent}>
           <View style={styles.cardItemCountry}>
+          <Modal isVisible={isModalVisible} style={{borderRadius:30}}>
+          <View style={{height:300,backgroundColor:gray,alignItems:"center"}}>
             
+            <NeuView
+          color={gray}
+          height={30}
+          width={200}
+          borderRadius={10}
+          style={{paddingVertical: 15}}>
+          <Text style={styles.textShadows2}>Detail Cases</Text>
+        </NeuView>
+        <SafeAreaView>
+        <View style={{alignItems:"center",}}> 
+      
+ 
+ <Text style={{fontSize:20,fontWeight:'bold'}}>{countryRegion}</Text>
+ <Text style={{color:'black',fontSize:14,marginVertical:10}}>{confirmed} Cases</Text>
+ <Text style={{color:'red',marginVertical:10}}>{deaths} Cases</Text>
+ <Text style={{color:'green',marginVertical:10}}>{recovered}Cases</Text>
+ <Text style={{color:'blue',marginVertical:10}}>{confirmed-recovered-deaths} Cases</Text>
+        </View>
+        
+  
+ 
+ 
+        </SafeAreaView>
+        <View style={{height:20}}/>
+            <Button title="Close" onPress={()=>setModal(!isModalVisible)} />
+          </View>
+        </Modal>
             <TouchableOpacity
-              // onPress={() => {
-              //   navigation.navigate('Detail', {
-              //     item: {...item},
-              //   })
-              // }}
+              onPress={() =>
+                setModal(!isModalVisible) 
+              }
               >
               <Text numberOfLines={2} style={styles.countryText}>{countryRegion}</Text>
             </TouchableOpacity>
