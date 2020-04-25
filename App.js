@@ -6,6 +6,8 @@ import Home from './src/Screen/Home'
 import CountryList from './src/Screen/CountryList'
 import Indonesia from './src/Screen/Indonesia'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import color from './src/Screen/Components/Color'
+import Maps from './src/Screen/Maps'
 
 const Stack = createStackNavigator();
 const HomeScreen=()=>{
@@ -17,6 +19,8 @@ const HomeScreen=()=>{
       <Stack.Screen name="Home" component={Home}
       options={{ headerShown: false }} />
       <Stack.Screen name="CountryList" component={CountryList}
+      options={{ headerShown: false }} />
+         <Stack.Screen name="Maps" component={Maps}
       options={{ headerShown: false }} />
     </Stack.Navigator>
   
@@ -51,7 +55,8 @@ const Tab = createBottomTabNavigator();
         inactiveTintColor: 'gray',
         style:{
           height:80,
-          marginVertical:-30
+          marginVertical:-30,
+          backgroundColor:color,
         },
         tabStyle:{height:40}
       }}
