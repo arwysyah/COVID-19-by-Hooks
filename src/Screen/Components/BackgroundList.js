@@ -1,7 +1,7 @@
 import React from 'react'
 import {View,Text,TouchableOpacity,StyleSheet} from 'react-native'
 
-const BackgroundList =({countryRegion,confirmed,deaths,recovered,active})=>{
+const BackgroundList =({countryRegion,confirmed,deaths,recovered,item})=>{
   // console.log(countyData,'res')
     
  return (
@@ -10,10 +10,13 @@ const BackgroundList =({countryRegion,confirmed,deaths,recovered,active})=>{
           <View style={styles.cardItemCountry}>
             
             <TouchableOpacity
-              onPress={() => {
-                // this.navigation();
-              }}>
-              <Text style={styles.countryText}>{countryRegion}</Text>
+              // onPress={() => {
+              //   navigation.navigate('Detail', {
+              //     item: {...item},
+              //   })
+              // }}
+              >
+              <Text numberOfLines={2} style={styles.countryText}>{countryRegion}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.cardItemDateCases}>
@@ -26,7 +29,7 @@ const BackgroundList =({countryRegion,confirmed,deaths,recovered,active})=>{
             <Text style={styles.recovered}>{recovered}</Text>
           </View>
           <View style={styles.cardItemDateCases}>
-            <Text style={styles.activeText}>{active}</Text>
+            <Text style={styles.activeText}>{confirmed-recovered-deaths}</Text>
           </View>
 
         

@@ -14,9 +14,9 @@ import BackgroundList from './Components/BackgroundList';
 import axios from 'axios';
 import Api from './Components/Api/countryApi';
 import gray from './Components/Color';
-import {NeuView, NeuButton} from 'react-native-neu-element';
-import AntDesign from 'react-native-vector-icons/AntDesign'
-
+import {NeuView, NeuButton,NeuBorderView} from 'react-native-neu-element';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import IonIcons from 'react-native-vector-icons/Ionicons';
 const screenHeight =
   Dimensions.get('window').height -
   (Dimensions.get('window').height * 22) / 100;
@@ -24,7 +24,7 @@ const screenHeight =
 const CountryList = ({navigation}) => {
   const [countryData, setCountryData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
-  const [text,setText]= useState('')
+  const [text, setText] = useState('');
 
   useEffect(() => {
     axios.get(`${Api}/confirmed`).then(res => {
@@ -42,58 +42,59 @@ const CountryList = ({navigation}) => {
     });
   };
 
-  const ListViewItemSeparator = () => {
-    return (
-      //returning the listview item saparator view
-      <View
-        style={{
-          height: 0.2,
-          width: '90%',
-          backgroundColor: '#808080',
-        }}
-      />
-    );
-  };
+ 
 
-  const filterData=countryData.filter(data=>{
-    return data.countryRegion.toLowerCase().indexOf(text.toLowerCase()) !== -1
-  })
+  const filterData = countryData.filter(data => {
+    return data.countryRegion.toLowerCase().indexOf(text.toLowerCase()) !== -1;
+  });
   return (
     <View style={styles.container}>
-        
-        <View style={{flexDirection:'row',justifyContent:'space-around',marginLeft:-20,top:5}}>
-            <NeuButton
-             color={gray}
-             height={40}
-             width={40}
-             borderRadius={20}
-             style={{paddingVertical: 5}}
-             concav
-             onPress={()=>navigation.navigate('Home')}>
-         <AntDesign name="arrowleft" size={20} color={'brown'} />
-         </NeuButton>
-      <NeuView
-      style={{marginLeft:-55}}
-        color={gray}
-        height={30}
-        width={200}
-        borderRadius={10}
-        style={{paddingVertical: 5}}
-        >
-        <Text style={styles.textShadows}>Country List</Text>
-      </NeuView>
-    <Text></Text>
-      </View>
-    
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-around',
 
-      <View style={{paddingHorizontal:15}}>
+          top: 5,
+        }}>
+        <NeuButton
+          color={gray}
+          height={40}
+          width={40}
+          borderRadius={20}
+          style={{paddingVertical: 5}}
+          concav
+          onPress={() => navigation.navigate('Home')}>
+          <AntDesign name="arrowleft" size={20} color={'brown'} />
+        </NeuButton>
+        <NeuBorderView
+          style={{marginLeft: -55}}
+          color={gray}
+          height={30}
+          width={200}
+          borderRadius={10}
+          style={{paddingVertical: 5}}>
+          <Text style={styles.textShadows}>Country List</Text>
+        </NeuBorderView>
+        <NeuButton
+          color={gray}
+          height={40}
+          width={40}
+          borderRadius={20}
+          style={{paddingVertical: 5}}
+          concav
+          onPress={() => onRefresh()}>
+          <IonIcons name="ios-refresh" size={20} color={'brown'} />
+        </NeuButton>
+        <Text />
+      </View>
+
+      <View style={{paddingHorizontal: 15}}>
         <View style={styles.textInput}>
-            
-        <AntDesign name="search1" size={20}  />
+          <AntDesign name="search1" size={20} />
           <TextInput
             style={styles.textInputContainer}
-              onChangeText={setText} 
-              value={text}
+            onChangeText={setText}
+            value={text}
           />
         </View>
         <View
@@ -142,7 +143,8 @@ const CountryList = ({navigation}) => {
                 deaths={item.deaths}
                 active={item.active}
                 recovered={item.recovered}
-                uid={item.uid}
+                id={item.uid}
+                item={item}
                 navigation={navigation}
               />
             )}
@@ -160,7 +162,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: gray,
-    
   },
   secondContainer: {
     justifyContent: 'center',
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
     width: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: -15,
+    left: 5,
   },
   recoveredBadge: {
     height: 19,
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
     width: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: -12,
+    left: 7,
   },
   activeBadge: {
     height: 19,
@@ -202,7 +203,8 @@ const styles = StyleSheet.create({
     width: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: -16,
+    // marginLeft: -16,
+    left: 14,
   },
   confirmedBadge: {
     height: 19,
@@ -211,7 +213,7 @@ const styles = StyleSheet.create({
     width: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: -15,
+    // marginLeft: -15,
   },
   countryBadge: {
     height: 19,
@@ -234,13 +236,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
   },
   textInput: {
-      marginTop:18,
+    marginTop: 18,
     marginLeft: 0,
     marginRight: 0,
     height: 38,
     color: 'red',
     fontSize: 16,
-    flexDirection:'row'
+    flexDirection: 'row',
   },
   textShadows: {
     textShadowColor: 'rgba(0, 0, 0, 0.75)',

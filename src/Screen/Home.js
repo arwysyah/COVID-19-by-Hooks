@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, View, Text} from 'react-native';
+import { SafeAreaView, StyleSheet, View, Text,ActivityIndicator} from 'react-native';
 import Card from '../Screen/Components/Card';
 import countryApi from '../Screen//Components/Api/countryApi';
 import { NeuView, NeuButton } from 'react-native-neu-element';
@@ -109,13 +109,18 @@ const Home = ({navigation}) => {
               height={40}
               width={160}
               borderRadius={14}
-              concave>
+              concave
+              onPress={() => navigation.navigate('Indonesia')}>
 
               <Text>Indonesia</Text>
             </NeuButton>
           </View>
         </SafeAreaView>
-        : <Text>loadimng ...</Text>}
+        :  
+        <View style={styles.container}>
+          <ActivityIndicator size="large"  />
+        </View> 
+         }
       </View>
     </>
   );
