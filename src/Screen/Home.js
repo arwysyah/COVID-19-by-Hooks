@@ -33,8 +33,8 @@ const Home = ({navigation}) => {
     }
   
    
-  },[]);
-  console.log(globalCases)
+  },[globalCases]);
+  // console.log(globalCases)
   return (
 
     <>

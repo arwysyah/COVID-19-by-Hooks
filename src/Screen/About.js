@@ -28,7 +28,7 @@ const About = () => {
           pemula,tetapi ini lah yang dapat developer bangun. Insya Allah
           aplikasi ini akan terus diperbarui sampai masa COVID 19 berakhir
           sejalan dengan developer yang akan terus belajar Special thanks kepada
-          mathcovid yang meyediakan data (API) dan memperbarui data secara
+          mathdroid yang meyediakan data (API) dan memperbarui data secara
           berkala, dan juga kepada desainer yang membuat desain logo dari
           aplikasi ini. Terima kasih semua, semoga kita tetap dilindungi Allah
           SWT dan tetap sehat Stay healthy it will keep others
